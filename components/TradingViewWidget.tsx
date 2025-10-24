@@ -21,7 +21,7 @@ const TradingViewWidget = ({
   const containerRef = useTradingViewWidget(scriptUrl, config, height);
 
   return (
-    <div className="w-ful">
+    <div className="w-full">
       {title && (
         <h3 className="font-semibold text-2xl text-gray-500 mb-5">{title}</h3>
       )}
