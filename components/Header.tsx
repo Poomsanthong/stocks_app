@@ -11,7 +11,7 @@ const Header = () => {
         <Link href="/">
           <Image
             src="/assets/icons/logo.svg"
-            alt="Siganlist logo"
+            alt="Signalist logo"
             width={140}
             height={32}
           />
