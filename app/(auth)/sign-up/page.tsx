@@ -9,6 +9,7 @@ import {
   PREFERRED_INDUSTRIES,
 } from "@/lib/constants";
 import CountrySelectField from "@/components/forms/CountrySelectField";
+import FooterLink from "@/components/forms/FooterLink";
 const SignUp = () => {
   const {
     register,
@@ -42,7 +43,7 @@ const SignUp = () => {
         <InputField
           name="fullName"
           label="Full Name"
-          placeholder="Poom Santhong"
+          placeholder="Enter your full name"
           register={register}
           error={errors.fullName}
           validation={{ required: "Full Name is required", minLength: 2 }}
@@ -115,6 +116,11 @@ const SignUp = () => {
         >
           {isSubmitting ? "Creating Account..." : "Start Investing"}
         </Button>
+        <FooterLink
+          text="Already have an account?"
+          linkText="Log in"
+          href="/sign-in"
+        />
       </form>
     </>
   );
