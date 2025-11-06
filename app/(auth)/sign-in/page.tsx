@@ -20,8 +20,6 @@ const SignIn = () => {
   });
 
   const onSubmit = async (data: SignInFormData) => {
-    console.log("Form Data Submitted: ", data);
-
     try {
       console.log("Form Data Submitted: ", data);
     } catch (error) {
