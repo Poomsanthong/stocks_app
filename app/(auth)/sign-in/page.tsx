@@ -48,6 +48,7 @@ const SignIn = () => {
         <InputField
           name="password"
           label="Password"
+          type="password"
           placeholder="••••••••"
           register={register}
           error={errors.password}
