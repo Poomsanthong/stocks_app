@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import Navitems from "./Navitems";
 import UserDropdown from "./UserDropdown";
-const Header = () => {
+const Header = ({ user }: { user: User }) => {
   return (
     <header className="sticky top-0 header">
       <div className="container header-wrapper">
@@ -19,7 +19,7 @@ const Header = () => {
         <nav className="hidden sm:block">
           <Navitems />
         </nav>
-        <UserDropdown />
+        <UserDropdown user={user} />
       </div>
     </header>
   );
