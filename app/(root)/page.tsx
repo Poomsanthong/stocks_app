@@ -1,12 +1,11 @@
 import TradingViewWidget from "@/components/TradingViewWidget";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import {
   HEATMAP_WIDGET_CONFIG,
   MARKET_DATA_WIDGET_CONFIG,
   MARKET_OVERVIEW_WIDGET_CONFIG,
   TOP_STORIES_WIDGET_CONFIG,
 } from "@/lib/constants";
-import React from "react";
 
 const Home = () => {
   const scriptUrl =
