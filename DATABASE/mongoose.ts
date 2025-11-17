@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-// Support both common env names
-import mongoose from "mongoose";
+// Support both common env names and prefer MONGODB_URI
+const MONGODB_URI = process.env.MONGODB_URI || process.env.MONGODB_URL;
 
 declare global {
   // allow global `var` declarations
@@ -19,34 +19,11 @@ if (!cached) {
 }
 
 export const connectToDatabase = async () => {
-  // Support both common env names
-  const MONGODB_URI = process.env.MONGODB_URI || process.env.MONGODB_URL;
-
-  if (!MONGODB_URI)
+  if (!MONGODB_URI) {
     throw new Error(
-      "Missing MongoDB connection string. Set MONGODB_URI (or MONGODB_URL) in your environment (e.g., .env.local)."
+      "Missing MongoDB connection string. Set MONGODB_URI (preferred) or MONGODB_URL in .env.local."
     );
-
-declare global {
-  // allow global `var` declarations
-  // eslint-disable-next-line no-var
-  var mongooseCache: {
-    conn: typeof mongoose | null;
-    promise: Promise<typeof mongoose> | null;
-  };
-}
-
-let cached = global.mongooseCache;
-
-if (!cached) {
-  cached = global.mongooseCache = { conn: null, promise: null };
-}
-
-export const connectToDatabase = async () => {
-  if (!MONGODB_URI)
-    throw new Error(
-      "Missing MongoDB connection string. Set MONGODB_URI (or MONGODB_URL) in your environment (e.g., .env.local)."
-    );
+  }
 
   if (cached.conn) {
     return cached.conn;
@@ -68,4 +45,12 @@ export const connectToDatabase = async () => {
   );
 
   return cached.conn;
+};
+
+export const pingDatabase = async () => {
+  const conn = await connectToDatabase();
+  const db = conn.connection.db;
+  if (!db) throw new Error("MongoDB connection is not initialized");
+  const admin = db.admin();
+  return admin.ping();
 };
